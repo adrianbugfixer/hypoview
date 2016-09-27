@@ -23,6 +23,11 @@ public class Website {
 		return id;
 	}
 
+	@Override
+	public String toString() {
+		return "Website [id=" + id + ", uri=" + uri + ", comments=" + comments + "]";
+	}
+
 	public String getUri() {
 		return uri;
 	}

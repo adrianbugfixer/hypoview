@@ -29,7 +29,7 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
+	
 	public Comment(Website website, String content) {
 		super();
 		this.website = website;
@@ -37,6 +37,11 @@ public class Comment {
 	} 
 	
 	public Comment() {}
+
+	@Override
+	public String toString() {
+		return "Comment [website=" + website + ", id=" + id + ", content=" + content + "]";
+	}
 
 	public Long getId() {
 		return this.id;

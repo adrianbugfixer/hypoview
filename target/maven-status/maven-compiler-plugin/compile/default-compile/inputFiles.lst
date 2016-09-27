@@ -1,6 +1,8 @@
 /home/awasik/Desktop/hypoviewer/HypoServer/src/main/java/utils/HtmlEncoding.java
 /home/awasik/Desktop/hypoviewer/HypoServer/src/main/java/adrianbugfixer/HypoServerApplication.java
+/home/awasik/Desktop/hypoviewer/HypoServer/src/main/java/adrianbugfixer/SpringSecurityWebAppConfig.java
 /home/awasik/Desktop/hypoviewer/HypoServer/src/main/java/adrianbugfixer/Website.java
 /home/awasik/Desktop/hypoviewer/HypoServer/src/main/java/adrianbugfixer/CommentRepository.java
 /home/awasik/Desktop/hypoviewer/HypoServer/src/main/java/adrianbugfixer/WebsiteRepository.java
 /home/awasik/Desktop/hypoviewer/HypoServer/src/main/java/adrianbugfixer/Comment.java
+/home/awasik/Desktop/hypoviewer/HypoServer/src/main/java/adrianbugfixer/CommentsController.java

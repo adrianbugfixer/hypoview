@@ -1,8 +1,5 @@
 //tag::runner[]
 package adrianbugfixer;
-
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -30,17 +27,16 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import utils.HtmlEncoding;
 
-@Configuration
 @SpringBootApplication
-@EnableAutoConfiguration
-@EnableWebMvc 
 public class HypoServerApplication {
 
 	@Bean
 	public CommandLineRunner init(WebsiteRepository websiteRepository, CommentRepository commentRepository) {
-		return (evt) -> Arrays.asList(HtmlEncoding.encodeURIComponent("http://google.com"), "http://wykop.pl").forEach(a -> {
+		return (evt) -> Arrays.asList("http://google.com", "http://www.wykop.pl/").forEach(a -> {
 			Website website = websiteRepository.save(new Website(a));
 			commentRepository.save(new Comment(website, "Ladna stronka"));
+			commentRepository.save(new Comment(website, "Omg, ale zal"));
+			commentRepository.save(new Comment(website, "Twoja stara nie ma kolan"));
 		});
 	}
 

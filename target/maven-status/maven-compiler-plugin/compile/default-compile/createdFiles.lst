@@ -1,0 +1,11 @@
+adrianbugfixer/CommentRestController.class
+adrianbugfixer/WebsiteRestController.class
+adrianbugfixer/CommentsController.class
+adrianbugfixer/Website.class
+adrianbugfixer/HypoServerApplication.class
+adrianbugfixer/WebsiteNotFoundException.class
+utils/HtmlEncoding.class
+adrianbugfixer/WebsiteRepository.class
+adrianbugfixer/CommentRepository.class
+adrianbugfixer/Comment.class
+adrianbugfixer/SpringSecurityWebAppConfig.class
