@@ -1,4 +1,4 @@
-package adrianbugfixer;
+package adrianbugfixer.website;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,6 +6,9 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.OneToMany;
+
+import adrianbugfixer.comment.Comment;
+
 import javax.persistence.Id;
 
 @Entity

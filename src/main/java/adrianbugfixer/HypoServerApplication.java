@@ -32,6 +32,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.stormpath.sdk.account.Account;
 import com.stormpath.sdk.servlet.account.AccountResolver;
 
+import adrianbugfixer.accountInfo.AccountInfo;
+import adrianbugfixer.accountInfo.AccountInfoRepository;
+import adrianbugfixer.comment.Comment;
+import adrianbugfixer.comment.CommentRepository;
+import adrianbugfixer.website.Website;
+import adrianbugfixer.website.WebsiteRepository;
 import utils.HtmlEncoding;
 
 @SpringBootApplication
@@ -55,48 +61,6 @@ public class HypoServerApplication {
 	}
 }
 // end::runner[]
-
-@RestController
-@RequestMapping("/api/comment/{commentId}")
-class CommentRateRestController {
-	private final CommentRepository commentRepository;
-	private final AccountInfoRepository accountInfoRepository;
-	
-	@RequestMapping(method = RequestMethod.GET)
-	ResponseEntity<?> rate(HttpServletRequest req, @PathVariable Long commentId, Rate rate) {
-		Account account = AccountResolver.INSTANCE.getAccount(req);
-		if(account!=null) {
-			Comment comment = this.commentRepository.findOne(commentId);
-			if(comment != null) {
-				if(rate == Rate.UPVOTE){
-					comment.upVote(account.getHref());
-					this.commentRepository.save(comment);	
-				} else if(rate == Rate.DOWNVOTE){
-					comment.downVote(account.getHref());
-					this.commentRepository.save(comment);
-				} else {
-					return new ResponseEntity<Object>(comment, HttpStatus.OK);
-				}
-			} else {
-				return new ResponseEntity<Object>(new String("Comment not found"), HttpStatus.BAD_REQUEST);
-			}
-			HttpHeaders httpHeaders = new HttpHeaders();
-			httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(comment.getId()).toUri());
-			return new ResponseEntity<Object>(comment, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Object>(HttpStatus.FORBIDDEN, HttpStatus.FORBIDDEN);
-		}
-		
-	}
-	
-	@Autowired
-	public CommentRateRestController(CommentRepository commentRepository, AccountInfoRepository accountInfoRepository) {
-		this.commentRepository = commentRepository;
-		this.accountInfoRepository = accountInfoRepository;
-	}
-
-}
-
 @RestController
 @CrossOrigin
 @RequestMapping("/api/website/")

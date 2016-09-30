@@ -1,4 +1,4 @@
-package adrianbugfixer;
+package adrianbugfixer.accountInfo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package adrianbugfixer;
+package adrianbugfixer.comment;
 
 public enum Rate {
 	UPVOTE, DOWNVOTE;

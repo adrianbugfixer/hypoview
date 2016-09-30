@@ -1,4 +1,4 @@
-package adrianbugfixer;
+package adrianbugfixer.comment;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.stormpath.sdk.account.Account;
 import com.stormpath.sdk.servlet.account.AccountResolver;
 
+import adrianbugfixer.accountInfo.AccountInfo;
+import adrianbugfixer.accountInfo.AccountInfoRepository;
+import adrianbugfixer.website.Website;
+import adrianbugfixer.website.WebsiteRepository;
 import utils.*;
 
 @Controller

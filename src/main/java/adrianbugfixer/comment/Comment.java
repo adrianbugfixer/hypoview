@@ -1,4 +1,4 @@
-package adrianbugfixer;
+package adrianbugfixer.comment;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -15,6 +15,9 @@ import javax.persistence.PrePersist;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.stormpath.sdk.account.Account;
+
+import adrianbugfixer.accountInfo.AccountInfo;
+import adrianbugfixer.website.Website;
 
 @Entity
 public class Comment {
