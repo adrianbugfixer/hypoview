@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 	Collection<Comment> findByWebsite_Uri(String uri);
-
 	Collection<Comment> findByWebsiteId(Long websiteId);
+	Collection<AccountInfo> findByAccountInfoHref(String href);
 }

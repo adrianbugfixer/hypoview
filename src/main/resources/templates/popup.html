@@ -65,12 +65,16 @@ p {
 		<h2 style="">Comments</h2>
 		<i style="font-size: 13px;"><span id="url" th:text="${url}"></span></i>
 		<div th:if="${#lists.isEmpty(comments)}">There are no comments yet.</div>
-		<div id="comments" th:each="comment : ${comments}">
-			<div class="comment">
+		<div id="comments">
+			<div class="comment" th:each="comment : ${comments}" th:attr="comment_id=${comment.getId()}">
 				<img src="avatar_default.png" />
 				<div>
-					<b>vonsuu</b><span class="timeAgo"> 4 hours ago</span><span
-						style="float: right;">+ -</span>
+					<b><span th:text="${comment.getAccountInfo().getFullName()}">author</span></b>
+					<span class="timeAgo" th:text="${comment.getCreated()}">  hours ago</span>
+					<span style="float: right;">
+					<span th:attr="id='rate_comment_id_'+${comment.getId()}" th:text="${comment.getRate()}">0</span>
+					<span th:attr="id='upvote_comment_id_'+${comment.getId()}, comment_id=${comment.getId()}">+</span> 
+					<span th:attr="id='downvote_comment_id_'+${comment.getId()}, comment_id=${comment.getId()}">-</span></span>
 				</div>
 				<p th:text="${comment.content}">content</p>
 			</div>
@@ -78,16 +82,34 @@ p {
 			<div id="comments_flag"></div>
 		</div>
 		<hr />
-		<div id="new_comment_form">
-			<h2>Add new comment</h2>
-			<form action="#" id="comment_form" th:action="@{/popup}"
-				method="post">
-				<input type="hidden" th:value="${website.uri}" name="url"></input>
-				<textarea id="comment_content" name="content"
-					th:value="${comment.content}" rows="5" cols="60"></textarea>
-				<input id="comment_submit" type="submit" value="Submit" />
+		<div th:if="${account}">
+			<!-- <h1 th:inline="text">Hello, [[${account.givenName}]]!</h1> 
+
+			<form th:action="@{/logout}" method="post">
+				<a href="/restricted" class="btn btn-primary">Restricted</a> <input
+					type="submit" class="btn btn-danger" value="Logout" />
+			</form>-->
+			<form th:action="@{/logout}" method="post">
+				<a href="/restricted" class="btn btn-primary">Restricted</a> <input
+					type="submit" class="btn btn-danger" value="Logout" />
 			</form>
+			<div id="new_comment_form">
+				<h2>Add new comment</h2>
+				<form action="#" id="comment_form" th:action="@{/popup}"
+					method="post">
+					<input type="hidden" th:value="${website.uri}" name="url"></input>
+					<textarea id="comment_content" name="content"
+						th:value="${comment.content}" rows="5" cols="60"></textarea>
+					<input id="comment_submit" type="submit" value="Submit" />
+				</form>
+			</div>
 		</div>
+		<!--/* displayed if account IS null, indicating that the user IS NOT logged in */-->
+		<div th:unless="${account}">
+			<p>You have to be logged in to add new comment.</p>
+			<a th:href="@{/login}" class="btn btn-success">Login</a>
+		</div>
+
 	</div>
 </body>
 </html>
