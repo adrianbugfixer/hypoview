@@ -9,6 +9,11 @@
  *   is found.
  */
 WEBSITE_URL = "";
+PROTOCOL_SSL = "https://";
+PROTOCOL_UNS = "http://";
+PROTOCOL = PROTOCOL_UNS;
+
+PROTOCOL = PROTOCOL_UNS;
 
 function renderComments(comments) {
 	var commentsDiv = document.getElementById("comments");
@@ -44,7 +49,7 @@ function renderComments(comments) {
 }
 
 function initPlugin(url) {
-	var api = "http://localhost:8080/api/website/";
+	var api = PROTOCOL+"localhost:8080/api/website/";
 	var params = {
 		"uri" : url
 	}
@@ -64,7 +69,7 @@ function initPlugin(url) {
 
 function addComment(params) {
 	var xmlhttp = new XMLHttpRequest();
-	var api = "http://localhost:8080/api/website/" + WEBSITE_ID + "/comments";
+	var api = PROTOCOL+"localhost:8443/api/website/" + WEBSITE_ID + "/comments";
 	xmlhttp.open("POST", api, true);
 	xmlhttp.setRequestHeader("Content-type", "application/json");
 	xmlhttp.send(JSON.stringify(params));
@@ -79,7 +84,7 @@ function addComment(params) {
 
 function getComments(callback) {
 	var xmlhttp = new XMLHttpRequest();
-	var api = "http://localhost:8080/api/website/" + WEBSITE_ID + "/comments";
+	var api = PROTOCOL+"localhost:8443/api/website/" + WEBSITE_ID + "/comments";
 	var comments = {};
 	xmlhttp.open("GET", api, true);
 	xmlhttp.setRequestHeader("Content-type", "application/json");
@@ -95,7 +100,7 @@ function getComments(callback) {
 function getComment(params,callback) {
 	var xmlhttp = new XMLHttpRequest();
 	var commentId = params.commentId;
-	var api = "http://localhost:8080/api/comment/" + commentId;
+	var api = PROTOCOL+"localhost:8443/api/comment/" + commentId;
 	var comments = {};
 	xmlhttp.open("GET", api, true);
 	xmlhttp.setRequestHeader("Content-type", "application/json");
@@ -109,7 +114,7 @@ function getComment(params,callback) {
 }
 function authenticate(callback) {
 	var xmlhttp = new XMLHttpRequest();
-	var api = "http://localhost:8080/oauth/token";
+	var api = PROTOCOL+"localhost:8443/oauth/token";
 	var params = "grant_type=password&username=adrian.bugfixer%40gmail.com&password=Surykatka1!";
 	xmlhttp.open("POST", api, true);
 	xmlhttp.setRequestHeader("Content-type",
@@ -174,7 +179,7 @@ function refreshCommentRating(params) {
 
 function rateComment(params) {
 	var xmlhttp = new XMLHttpRequest();
-	var api = "http://localhost:8080/api/comment/" + params.commentId + "?rate="
+	var api = PROTOCOL+"localhost:8443/api/comment/" + params.commentId + "?rate="
 			+ params.rate;
 	xmlhttp.open("GET", api, true);
 	xmlhttp.setRequestHeader("Content-type", "application/json");
@@ -189,7 +194,7 @@ function rateComment(params) {
 document.addEventListener('DOMContentLoaded', function() {
 	var frameParams = getFrameParams();
 	console.log("%o", frameParams);
-	var api = "http://localhost:8080/api/website/";
+	var api = PROTOCOL+"localhost:8443/api/website/";
 	//var addCommentSubmit = document.getElementById('comment_submit');
 
 	var commentsParent = document.getElementById("comments");
