@@ -1,0 +1,109 @@
+body {
+	font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+	font-size: 100%;
+	min-width: 500px;
+	background-color: #f2f2f2;
+}
+
+h2 {
+	margin-bottom: 5px;
+	padding-bottom: 0;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+}
+
+.left {
+}
+
+.right {
+}
+
+.clear {
+	clear: both;
+}
+
+.timeAgo {
+	font-size: 11px;
+	color: grey;
+}
+
+#comments {
+	margin: 0;
+}
+
+.comment {
+	margin-top: 12px;
+}
+#add_comment {
+	margin: 0px;
+	margin-bottom: 0;
+}
+.col-fixed-50{
+    width:50px;
+    position: absolute;
+    height:100%;
+}
+.col-offset-50 {
+	padding-left: 60px;
+}
+.comment_body {
+	margin: 0 10px 10px 10px;
+}
+.comment_author {
+	font-size: 15px;
+}
+.comment_rate {
+	font-size: 17px;
+}
+.cursor-pointer {
+	cursor: pointer; cursor: hand;
+}
+/**/
+.margin-navbar {
+	margin-top: 60px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 0.1px;
+  width: 100%;
+}
+
+.sheet {
+	padding: 16px 16px 16px 32px;
+}
+.card-1 {
+  box-shadow: 0 0.1px 1px rgba(0,0,0,0.1), 0 0.1px 0.01px rgba(0,0,0,0.01);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.img-responsive {
+	max-width: 100%;
+	height: auto;
+}
+.sidebar-title {
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+.sidebar-subtitle{
+	color: #707070;
+}
+
+.sidebar-supporting-text{
+
+}
+
+.demo-card {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 100px;
+}
+
+.form-group {
+	margin-bottom: 0px;
+}

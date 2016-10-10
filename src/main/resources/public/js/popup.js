@@ -12,8 +12,7 @@ WEBSITE_URL = "";
 PROTOCOL_SSL = "https://";
 PROTOCOL_UNS = "http://";
 PROTOCOL = PROTOCOL_UNS;
-
-PROTOCOL = PROTOCOL_UNS;
+IS_COMMENT_CONTENT_DEFAULT = true;
 
 function renderComments(comments) {
 	var commentsDiv = document.getElementById("comments");
@@ -59,7 +58,6 @@ function initPlugin(url) {
 	xmlhttp.send(JSON.stringify(params));
 	xmlhttp.onreadystatechange = function() { //Call a function when the state changes.
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			//alert(xmlhttp.responseText);
 			var response = JSON.parse(this.responseText);
 			WEBSITE_ID = response.id;
 			//renderComments(response.comments);
@@ -174,7 +172,7 @@ function refreshCommentRating(params) {
 		var rating = comment.rate;
 		var ratingSpan = document.getElementById("rate_comment_id_"+comment.id);
 		ratingSpan.innerHTML=rating;
-	})
+	});
 }
 
 function rateComment(params) {
@@ -188,6 +186,14 @@ function rateComment(params) {
 		if (xmlhttp.readyState == 4) {
 			refreshCommentRating(params);
 		}
+	}
+}
+
+function commentsContentClickHandler(e) {
+	if(IS_COMMENT_CONTENT_DEFAULT){
+		var clickedElement = e.target;
+		clickedElement.value = "";
+		IS_COMMENT_CONTENT_DEFAULT = false;
 	}
 }
 
@@ -208,8 +214,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		"detail" : "Fires when authentication is completed."
 	});
 
+	var newCommentContent = document.getElementById("comment_content");
+	newCommentContent.addEventListener("click", commentsContentClickHandler);
+
 	WEBSITE_URL = url;
-	document.getElementById('url').textContent = url;
+	//document.getElementById('url').textContent = url;
 	//initPlugin(WEBSITE_URL);
 	// authenticate(function(response){
 	//	  console.log("response %o", response);

@@ -1,6 +1,5 @@
 package adrianbugfixer.website;
 
-import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -56,8 +56,18 @@ public class CommentsController {
 				: websiteRepository.save(new Website(currentUrl));
 
 		Account account = AccountResolver.INSTANCE.getAccount(req);
-		AccountInfo accountInfo = accountInfoRepository.save(new AccountInfo(account.getEmail(), account.getHref(), account.getFullName()));
-		commentsRepository.save(new Comment(websiteFinal, comment.getContent(),accountInfo));
+		Optional<AccountInfo> accountInfoOptional;
+		Comment newComment = null;
+		if(account != null) {
+			accountInfoOptional = accountInfoRepository.findByHref(account.getHref());
+			if(accountInfoOptional.isPresent()){
+				newComment = new Comment(websiteFinal, comment.getContent(),accountInfoOptional.get());
+			} else {
+				AccountInfo accountInfo = accountInfoRepository.save(new AccountInfo(account.getFullName(), account.getHref(), account.getEmail()));
+				newComment = new Comment(websiteFinal, comment.getContent(),accountInfo);
+			}
+		}
+		commentsRepository.save(newComment);
 		Collection<Comment> comments = commentsRepository.findByWebsite_Uri(currentUrl);
 		model.addAttribute("comments", comments);
 		model.addAttribute("url", currentUrl);
